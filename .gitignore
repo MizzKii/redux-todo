@@ -36,5 +36,8 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-#Cloud9
+# Cloud9
 .c9
+
+# Build directory
+build
