@@ -1,6 +1,6 @@
 import { createStore, combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-import * as reducers from '../reducers'
+import * as reducers from './reducers'
 
 export default createStore(
   combineReducers({

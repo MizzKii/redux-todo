@@ -5,9 +5,10 @@ export default (req, res) => {
     <head>
       <meta charset="utf-8">
       <title>Redux Todolist</title>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
-    <body>
-      <script src="./bundle.js"></script>
+    <body style="background-color: #EEE">
+      <script src="/bundle.js"></script>
     </body>
   </html>
   `)
