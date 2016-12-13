@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
-import { Card, CardTitle, CardText, CardActions, Cell, Textfield, Button } from 'react-mdl'
+import { Card, CardTitle, CardText, CardActions, Textfield, Button } from 'react-mdl'
 import style from './TodoForm.scss'
 
 export default class extends Component {
@@ -12,6 +12,10 @@ export default class extends Component {
     createDate: PropTypes.string,
     handleSubmit: PropTypes.func.isRequired
   }
+  static defaultProps = {
+    title: '',
+    description: ''
+  }
   state = {
     title: this.props.title,
     description: this.props.description
@@ -21,7 +25,8 @@ export default class extends Component {
       id: this.props.id | this.props.newId,
       title: this.state.title,
       description: this.state.description,
-      createDate: this.props.createDate ? this.props.createDate : new Date ().toString ()
+      createDate: this.props.createDate ? this.props.createDate : new Date ().toString (),
+      isComplete: false
     }
     this.props.handleSubmit (todo)
   }
@@ -35,9 +40,9 @@ export default class extends Component {
         <CardText>
           <Textfield
             label="Title"
-            floatingLabel
-            onChange={obj => this.setState ({ title: obj.target.value })}
+            onChange={e => this.setState ({ title: e.target.value })}
             value={this.state.title}
+            floatingLabel
           />
           <Textfield
             label="Description"

@@ -10,8 +10,7 @@ export default (state = initialState, action) => {
         case EDIT:
             return state.map (todo => todo.id === action.todo.id ? action.todo : todo)
         case REMOVE:
-            // code
-            break;
+            return state.filter (todo => todo.id !== action.todo.id)
         default:
             return state
     }
