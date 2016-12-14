@@ -1,22 +1,35 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
-import { Grid, Cell, Button, DataTable, TableHeader } from 'react-mdl'
+import { Grid, Cell, Button, DataTable, TableHeader, Checkbox } from 'react-mdl'
 import style from './todoList.scss'
 
 export default class extends Component {
   static propTypes = {
     todos: PropTypes.array.isRequired,
+    toggleComplete: PropTypes.func.isRequired,
     onRemoveTodo: PropTypes.func.isRequired
   }
-  handleCheck (obj) {
-     console.log (obj)
-  }
-  render () {
-    const todos = this.props.todos.map (todo => ({
+  createRows () {
+    return this.props.todos.map (todo => ({
       ...todo,
       title: <Link to={`/edit/${todo.id}`}>{todo.title}</Link>,
-      delete: <Button onClick={() => this.props.onRemoveTodo ({ id: todo.id })} ripple><i className="material-icons">delete</i></Button>
+      delete: (
+        <Button
+          onClick={() => this.props.onRemoveTodo ({ id: todo.id })}
+          ripple >
+          <i className="material-icons">delete</i>
+        </Button>
+      ),
+      checkbox: (
+        <Checkbox
+          key={todo.id}
+          defaultChecked={todo.isComplete}
+          onChange={event => this.props.toggleComplete ({ ...todo, isComplete: event.target.checked })}
+          ripple />
+        )
     }))
+  }
+  render () {
     return (
       <div className={style.container}>
         <Grid>
@@ -25,10 +38,15 @@ export default class extends Component {
             <Link to="/add"><Button className={style.btn_add} raised ripple colored>Add</Button></Link>
           </Cell>
         </Grid>
-        <DataTable rows={todos} className={style.table} onSelectionChanged={this.handleCheck.bind (this)} rowKeyColumn="id" shadow={0} selectable>
-            <TableHeader name="title" tooltip="Title of todo">Title</TableHeader>
-            <TableHeader name="createDate" tooltip="Create date of todo">Create</TableHeader>
-            <TableHeader name="delete" numeric></TableHeader>
+        <DataTable
+          className={style.table}
+          rows={this.createRows ()}
+          rowKeyColumn="id"
+          shadow={0}>
+            <TableHeader name="checkbox" style={{ width: '67px' }} ></TableHeader>
+            <TableHeader name="title" tooltip="Title of todo" >Title</TableHeader>
+            <TableHeader name="createDate" tooltip="Create date of todo" numeric >Create</TableHeader>
+            <TableHeader name="delete" style={{ width: '106px' }} numeric ></TableHeader>
         </DataTable>
         </div>
     )

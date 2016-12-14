@@ -46,12 +46,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onAddTodo (todo) {
-    dispatch (addTodo (todo))
-  },
-  onEditTodo (todo) {
-    dispatch (editTodo (todo))
-  }
+  onAddTodo: todo => dispatch (addTodo (todo)),
+  onEditTodo: todo => dispatch (editTodo (todo))
 })
 
 export default connect (
