@@ -1,15 +1,18 @@
 import express from 'express'
 import webpack from 'webpack'
 import webpackDevServer from 'webpack-dev-server'
+import bodyParser from 'body-parser'
 import ssr from './ssr'
 import webpackConfig from '../../webpack.config'
+import api from './api'
+import config from './config'
 
-const env = process.env.NODE_ENV | 'development'
-let app;
+let app = express ()
+app.use (bodyParser.json ())
+api (app)
 
-if (env === 'production') {
-  app = express ()
-} else {
+if (config.env !== 'production') {
+  app.listen (config.api.port, () => console.log (`API start on port ${config.api.port}`))
   app = new webpackDevServer (webpack (webpackConfig), {
     contentBase: '/build/',
     stats: {
@@ -18,8 +21,14 @@ if (env === 'production') {
     hot: true,
     inline: true,
     historyApiFallback: true,
+    proxy: {
+      '/api': {
+        target: `http://127.0.0.1:${config.api.port}/api`,
+        pathRewrite: {'^/api' : ''}
+      }
+    }
   })
 }
 
 app.use ('/', ssr)
-app.listen (3000, () => console.log (`Server start on port 3000`))
+app.listen (config.port, () => console.log (`Server start on port ${config.port}`))

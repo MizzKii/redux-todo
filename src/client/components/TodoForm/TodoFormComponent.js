@@ -26,7 +26,7 @@ export default class extends Component {
       title: this.state.title,
       description: this.state.description,
       createDate: this.props.createDate ? this.props.createDate : new Date ().toString (),
-      isComplete: false
+      isComplete: this.props.isComplete | false
     }
     this.props.handleSubmit (todo)
   }

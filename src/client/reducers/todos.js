@@ -1,17 +1,19 @@
 import { TODO } from '../constants'
 
-const { ADD, EDIT, REMOVE } = TODO
+const { FETCH, ADD, EDIT, REMOVE } = TODO
 const initialState = []
 
 export default (state = initialState, action) => {
-    switch (action.type) {
-        case ADD:
-            return [ ...state, action.todo ]
-        case EDIT:
-            return state.map (todo => todo.id === action.todo.id ? action.todo : todo)
-        case REMOVE:
-            return state.filter (todo => todo.id !== action.todo.id)
-        default:
-            return state
-    }
+  switch (action.type) {
+    case FETCH:
+      return action.payload
+    case ADD:
+      return action.payload
+    case EDIT:
+      return action.payload
+    case REMOVE:
+      return action.payload
+    default:
+      return state
+  }
 }
