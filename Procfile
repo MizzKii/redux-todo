@@ -1,1 +1,1 @@
-Dev npm run dev
+Start npm run start
