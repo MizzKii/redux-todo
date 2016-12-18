@@ -50,6 +50,6 @@
     "webpack-dev-server": "^2.1.0-beta.12"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0",
+    "nodemon": "^1.11.0"
   }
 }
