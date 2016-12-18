@@ -38,6 +38,7 @@ export default class extends Component {
     .map (todo => ({
       ...todo,
       title: <Link to={`/edit/${todo.id}`}>{todo.title}</Link>,
+      createDate: <div className={style.create_date}>{todo.createDate}</div>,
       delete: (
         <Button
           onClick={() => this.props.onRemoveTodo ({ id: todo.id })}
@@ -75,7 +76,7 @@ export default class extends Component {
           shadow={0}>
             <TableHeader name="checkbox" style={{ width: '67px' }}></TableHeader>
             <TableHeader name="title" tooltip="Title of todo">Title</TableHeader>
-            <TableHeader name="createDate" tooltip="Create date of todo" numeric>Create</TableHeader>
+            <TableHeader name="createDate" tooltip="Create date of todo" className={style.create_date} numeric>Create</TableHeader>
             <TableHeader name="delete" style={{ width: '106px' }} numeric></TableHeader>
         </DataTable>
         </div>
