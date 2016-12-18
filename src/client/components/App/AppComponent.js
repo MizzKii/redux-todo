@@ -37,7 +37,6 @@ export default class extends Component {
     )
   }
   componentDidUpdate () {
-    console.log (this.props.state)
     if (this.state.state !== this.props.state) {
       let snackbarActive = true
       let state = this.props.state

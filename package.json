@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Todolist power by react, redux",
   "scripts": {
-    "start": "node ./src/index.js",
-    "dev": "nodemon ./src/index.js"
+    "start": "webpack && cross-env NODE_ENV=production node ./src/index.js",
+    "dev": "cross-env NODE_ENV=development nodemon ./src/index.js"
   },
   "repository": {
     "type": "git",
