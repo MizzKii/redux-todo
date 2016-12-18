@@ -10,6 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/MizzKii/redux-todo.git"
   },
+  "engines": {
+    "node": "6.6.0",
+    "npm": "3.10.8"
+  },
   "keywords": [
     "react",
     "redux.",

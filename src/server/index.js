@@ -1,3 +1,4 @@
+import path from 'path'
 import express from 'express'
 import webpack from 'webpack'
 import webpackDevServer from 'webpack-dev-server'
@@ -30,5 +31,6 @@ if (config.env !== 'production') {
   })
 }
 
+app.use(express.static(path.join(__dirname, '../../build')))
 app.use ('/', ssr)
 app.listen (config.port, () => console.log (`Server start on port ${config.port}`))
